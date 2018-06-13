@@ -1,20 +1,20 @@
 Shader "Learning Unity Shader/Lecture 15/RapidBlurEffect"
 {
-	//-----------------------------------¡¾ÊôĞÔ || Properties¡¿------------------------------------------  
+	//-----------------------------------ã€å±æ€§ || Propertiesã€‘------------------------------------------  
 	Properties
 	{
-		//Ö÷ÎÆÀí
+		//ä¸»çº¹ç†
 		_MainTex("Base (RGB)", 2D) = "white" {}
 	}
 
-	//----------------------------------¡¾×Ó×ÅÉ«Æ÷ || SubShader¡¿---------------------------------------  
+	//----------------------------------ã€å­ç€è‰²å™¨ || SubShaderã€‘---------------------------------------  
 	SubShader
 	{
 		ZWrite Off
 		Blend Off
 
-		//---------------------------------------¡¾Í¨µÀ0 || Pass 0¡¿------------------------------------
-		//Í¨µÀ0£º½µ²ÉÑùÍ¨µÀ ||Pass 0: Down Sample Pass
+		//---------------------------------------ã€é€šé“0 || Pass 0ã€‘------------------------------------
+		//é€šé“0ï¼šé™é‡‡æ ·é€šé“ ||Pass 0: Down Sample Pass
 		Pass
 		{
 			ZTest Off
@@ -22,17 +22,17 @@ Shader "Learning Unity Shader/Lecture 15/RapidBlurEffect"
 
 			CGPROGRAM
 
-			//Ö¸¶¨´ËÍ¨µÀµÄ¶¥µã×ÅÉ«Æ÷Îªvert_DownSmpl
+			//æŒ‡å®šæ­¤é€šé“çš„é¡¶ç‚¹ç€è‰²å™¨ä¸ºvert_DownSmpl
 			#pragma vertex vert_DownSmpl
-			//Ö¸¶¨´ËÍ¨µÀµÄÏñËØ×ÅÉ«Æ÷Îªfrag_DownSmpl
+			//æŒ‡å®šæ­¤é€šé“çš„åƒç´ ç€è‰²å™¨ä¸ºfrag_DownSmpl
 			#pragma fragment frag_DownSmpl
 
 			ENDCG
 
 		}
 
-		//---------------------------------------¡¾Í¨µÀ1 || Pass 1¡¿------------------------------------
-		//Í¨µÀ1£º´¹Ö±·½ÏòÄ£ºı´¦ÀíÍ¨µÀ ||Pass 1: Vertical Pass
+		//---------------------------------------ã€é€šé“1 || Pass 1ã€‘------------------------------------
+		//é€šé“1ï¼šå‚ç›´æ–¹å‘æ¨¡ç³Šå¤„ç†é€šé“ ||Pass 1: Vertical Pass
 		Pass
 		{
 			ZTest Always
@@ -40,16 +40,16 @@ Shader "Learning Unity Shader/Lecture 15/RapidBlurEffect"
 
 			CGPROGRAM
 
-			//Ö¸¶¨´ËÍ¨µÀµÄ¶¥µã×ÅÉ«Æ÷Îªvert_BlurVertical
+			//æŒ‡å®šæ­¤é€šé“çš„é¡¶ç‚¹ç€è‰²å™¨ä¸ºvert_BlurVertical
 			#pragma vertex vert_BlurVertical
-			//Ö¸¶¨´ËÍ¨µÀµÄÏñËØ×ÅÉ«Æ÷Îªfrag_Blur
+			//æŒ‡å®šæ­¤é€šé“çš„åƒç´ ç€è‰²å™¨ä¸ºfrag_Blur
 			#pragma fragment frag_Blur
 
 			ENDCG
 		}
 
-		//---------------------------------------¡¾Í¨µÀ2 || Pass 2¡¿------------------------------------
-		//Í¨µÀ2£ºË®Æ½·½ÏòÄ£ºı´¦ÀíÍ¨µÀ ||Pass 2: Horizontal Pass
+		//---------------------------------------ã€é€šé“2 || Pass 2ã€‘------------------------------------
+		//é€šé“2ï¼šæ°´å¹³æ–¹å‘æ¨¡ç³Šå¤„ç†é€šé“ ||Pass 2: Horizontal Pass
 		Pass
 		{
 			ZTest Always
@@ -57,9 +57,9 @@ Shader "Learning Unity Shader/Lecture 15/RapidBlurEffect"
 
 			CGPROGRAM
 
-			//Ö¸¶¨´ËÍ¨µÀµÄ¶¥µã×ÅÉ«Æ÷Îªvert_BlurHorizontal
+			//æŒ‡å®šæ­¤é€šé“çš„é¡¶ç‚¹ç€è‰²å™¨ä¸ºvert_BlurHorizontal
 			#pragma vertex vert_BlurHorizontal
-			//Ö¸¶¨´ËÍ¨µÀµÄÏñËØ×ÅÉ«Æ÷Îªfrag_Blur
+			//æŒ‡å®šæ­¤é€šé“çš„åƒç´ ç€è‰²å™¨ä¸ºfrag_Blur
 			#pragma fragment frag_Blur
 
 			ENDCG
@@ -67,45 +67,45 @@ Shader "Learning Unity Shader/Lecture 15/RapidBlurEffect"
 	}
 
 
-	//-------------------------CG×ÅÉ«ÓïÑÔÉùÃ÷²¿·Ö || Begin CG Include Part----------------------  
+	//-------------------------CGç€è‰²è¯­è¨€å£°æ˜éƒ¨åˆ† || Begin CG Include Part----------------------  
 	CGINCLUDE
 
-	//¡¾1¡¿Í·ÎÄ¼ş°üº¬ || include
+	//ã€1ã€‘å¤´æ–‡ä»¶åŒ…å« || include
 	#include "UnityCG.cginc"
 
-	//¡¾2¡¿±äÁ¿ÉùÃ÷ || Variable Declaration
+	//ã€2ã€‘å˜é‡å£°æ˜ || Variable Declaration
 	sampler2D _MainTex;
-	//UnityCG.cgincÖĞÄÚÖÃµÄ±äÁ¿£¬ÎÆÀíÖĞµÄµ¥ÏñËØ³ß´ç|| it is the size of a texel of the texture
+	//UnityCG.cgincä¸­å†…ç½®çš„å˜é‡ï¼Œçº¹ç†ä¸­çš„å•åƒç´ å°ºå¯¸|| it is the size of a texel of the texture
 	uniform half4 _MainTex_TexelSize;
-	//C#½Å±¾¿ØÖÆµÄ±äÁ¿ || Parameter
+	//C#è„šæœ¬æ§åˆ¶çš„å˜é‡ || Parameter
 	uniform half _DownSampleValue;
 
-	//¡¾3¡¿¶¥µãÊäÈë½á¹¹Ìå || Vertex Input Struct
+	//ã€3ã€‘é¡¶ç‚¹è¾“å…¥ç»“æ„ä½“ || Vertex Input Struct
 	struct VertexInput
 	{
-		//¶¥µãÎ»ÖÃ×ø±ê
+		//é¡¶ç‚¹ä½ç½®åæ ‡
 		float4 vertex : POSITION;
-		//Ò»¼¶ÎÆÀí×ø±ê
+		//ä¸€çº§çº¹ç†åæ ‡
 		half2 texcoord : TEXCOORD0;
 	};
 
-	//¡¾4¡¿½µ²ÉÑùÊä³ö½á¹¹Ìå || Vertex Input Struct
+	//ã€4ã€‘é™é‡‡æ ·è¾“å‡ºç»“æ„ä½“ || Vertex Input Struct
 	struct VertexOutput_DownSmpl
 	{
-		//ÏñËØÎ»ÖÃ×ø±ê
+		//åƒç´ ä½ç½®åæ ‡
 		float4 pos : SV_POSITION;
-		//Ò»¼¶ÎÆÀí×ø±ê£¨ÓÒÉÏ£©
+		//ä¸€çº§çº¹ç†åæ ‡ï¼ˆå³ä¸Šï¼‰
 		half2 uv20 : TEXCOORD0;
-		//¶ş¼¶ÎÆÀí×ø±ê£¨×óÏÂ£©
+		//äºŒçº§çº¹ç†åæ ‡ï¼ˆå·¦ä¸‹ï¼‰
 		half2 uv21 : TEXCOORD1;
-		//Èı¼¶ÎÆÀí×ø±ê£¨ÓÒÏÂ£©
+		//ä¸‰çº§çº¹ç†åæ ‡ï¼ˆå³ä¸‹ï¼‰
 		half2 uv22 : TEXCOORD2;
-		//ËÄ¼¶ÎÆÀí×ø±ê£¨×óÉÏ£©
+		//å››çº§çº¹ç†åæ ‡ï¼ˆå·¦ä¸Šï¼‰
 		half2 uv23 : TEXCOORD3;
 	};
 
 
-	//¡¾5¡¿×¼±¸¸ßË¹Ä£ºıÈ¨ÖØ¾ØÕó²ÎÊı7x4µÄ¾ØÕó ||  Gauss Weight
+	//ã€5ã€‘å‡†å¤‡é«˜æ–¯æ¨¡ç³Šæƒé‡çŸ©é˜µå‚æ•°7x4çš„çŸ©é˜µ ||  Gauss Weight
 	static const half4 GaussWeight[7] =
 	{
 		half4(0.0205,0.0205,0.0205,0),
@@ -118,116 +118,116 @@ Shader "Learning Unity Shader/Lecture 15/RapidBlurEffect"
 	};
 
 
-	//¡¾6¡¿¶¥µã×ÅÉ«º¯Êı || Vertex Shader Function
+	//ã€6ã€‘é¡¶ç‚¹ç€è‰²å‡½æ•° || Vertex Shader Function
 	VertexOutput_DownSmpl vert_DownSmpl(VertexInput v)
 	{
-		//¡¾6.1¡¿ÊµÀı»¯Ò»¸ö½µ²ÉÑùÊä³ö½á¹¹
+		//ã€6.1ã€‘å®ä¾‹åŒ–ä¸€ä¸ªé™é‡‡æ ·è¾“å‡ºç»“æ„
 		VertexOutput_DownSmpl o;
 
-		//¡¾6.2¡¿Ìî³äÊä³ö½á¹¹
-		//½«ÈıÎ¬¿Õ¼äÖĞµÄ×ø±êÍ¶Ó°µ½¶şÎ¬´°¿Ú  
+		//ã€6.2ã€‘å¡«å……è¾“å‡ºç»“æ„
+		//å°†ä¸‰ç»´ç©ºé—´ä¸­çš„åæ ‡æŠ•å½±åˆ°äºŒç»´çª—å£  
 		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
-		//¶ÔÍ¼ÏñµÄ½µ²ÉÑù£ºÈ¡ÏñËØÉÏÏÂ×óÓÒÖÜÎ§µÄµã£¬·Ö±ğ´æÓÚËÄ¼¶ÎÆÀí×ø±êÖĞ
-		o.uv20 = v.texcoord + _MainTex_TexelSize.xy* half2(0.5h, 0.5h);;
+		//å¯¹å›¾åƒçš„é™é‡‡æ ·ï¼šå–åƒç´ ä¸Šä¸‹å·¦å³å‘¨å›´çš„ç‚¹ï¼Œåˆ†åˆ«å­˜äºå››çº§çº¹ç†åæ ‡ä¸­
+		o.uv20 = v.texcoord + _MainTex_TexelSize.xy* half2(0.5h, 0.5h);
 		o.uv21 = v.texcoord + _MainTex_TexelSize.xy * half2(-0.5h, -0.5h);
 		o.uv22 = v.texcoord + _MainTex_TexelSize.xy * half2(0.5h, -0.5h);
 		o.uv23 = v.texcoord + _MainTex_TexelSize.xy * half2(-0.5h, 0.5h);
 
-		//¡¾6.3¡¿·µ»Ø×îÖÕµÄÊä³ö½á¹û
+		//ã€6.3ã€‘è¿”å›æœ€ç»ˆçš„è¾“å‡ºç»“æœ
 		return o;
 	}
 
-	//¡¾7¡¿Æ¬¶Î×ÅÉ«º¯Êı || Fragment Shader Function
+	//ã€7ã€‘ç‰‡æ®µç€è‰²å‡½æ•° || Fragment Shader Function
 	fixed4 frag_DownSmpl(VertexOutput_DownSmpl i) : SV_Target
 	{
-		//¡¾7.1¡¿¶¨ÒåÒ»¸öÁÙÊ±µÄÑÕÉ«Öµ
+		//ã€7.1ã€‘å®šä¹‰ä¸€ä¸ªä¸´æ—¶çš„é¢œè‰²å€¼
 		fixed4 color = (0,0,0,0);
 
-	//¡¾7.2¡¿ËÄ¸öÏàÁÚÏñËØµã´¦µÄÎÆÀíÖµÏà¼Ó
+	//ã€7.2ã€‘å››ä¸ªç›¸é‚»åƒç´ ç‚¹å¤„çš„çº¹ç†å€¼ç›¸åŠ 
 	color += tex2D(_MainTex, i.uv20);
 	color += tex2D(_MainTex, i.uv21);
 	color += tex2D(_MainTex, i.uv22);
 	color += tex2D(_MainTex, i.uv23);
 
-	//¡¾7.3¡¿·µ»Ø×îÖÕµÄÆ½¾ùÖµ
+	//ã€7.3ã€‘è¿”å›æœ€ç»ˆçš„å¹³å‡å€¼
 	return color / 4;
 	}
 
-		//¡¾8¡¿¶¥µãÊäÈë½á¹¹Ìå || Vertex Input Struct
+		//ã€8ã€‘é¡¶ç‚¹è¾“å…¥ç»“æ„ä½“ || Vertex Input Struct
 	struct VertexOutput_Blur
 	{
-		//ÏñËØ×ø±ê
+		//åƒç´ åæ ‡
 		float4 pos : SV_POSITION;
-		//Ò»¼¶ÎÆÀí£¨ÎÆÀí×ø±ê£©
+		//ä¸€çº§çº¹ç†ï¼ˆçº¹ç†åæ ‡ï¼‰
 		half4 uv : TEXCOORD0;
-		//¶ş¼¶ÎÆÀí£¨Æ«ÒÆÁ¿£©
+		//äºŒçº§çº¹ç†ï¼ˆåç§»é‡ï¼‰
 		half2 offset : TEXCOORD1;
 	};
 
-	//¡¾9¡¿¶¥µã×ÅÉ«º¯Êı || Vertex Shader Function
+	//ã€9ã€‘é¡¶ç‚¹ç€è‰²å‡½æ•° || Vertex Shader Function
 	VertexOutput_Blur vert_BlurHorizontal(VertexInput v)
 	{
-		//¡¾9.1¡¿ÊµÀı»¯Ò»¸öÊä³ö½á¹¹
+		//ã€9.1ã€‘å®ä¾‹åŒ–ä¸€ä¸ªè¾“å‡ºç»“æ„
 		VertexOutput_Blur o;
 
-		//¡¾9.2¡¿Ìî³äÊä³ö½á¹¹
-		//½«ÈıÎ¬¿Õ¼äÖĞµÄ×ø±êÍ¶Ó°µ½¶şÎ¬´°¿Ú  
+		//ã€9.2ã€‘å¡«å……è¾“å‡ºç»“æ„
+		//å°†ä¸‰ç»´ç©ºé—´ä¸­çš„åæ ‡æŠ•å½±åˆ°äºŒç»´çª—å£  
 		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
-		//ÎÆÀí×ø±ê
+		//çº¹ç†åæ ‡
 		o.uv = half4(v.texcoord.xy, 1, 1);
-		//¼ÆËãX·½ÏòµÄÆ«ÒÆÁ¿
+		//è®¡ç®—Xæ–¹å‘çš„åç§»é‡
 		o.offset = _MainTex_TexelSize.xy * half2(1.0, 0.0) * _DownSampleValue;
 
-		//¡¾9.3¡¿·µ»Ø×îÖÕµÄÊä³ö½á¹û
+		//ã€9.3ã€‘è¿”å›æœ€ç»ˆçš„è¾“å‡ºç»“æœ
 		return o;
 	}
 
-	//¡¾10¡¿¶¥µã×ÅÉ«º¯Êı || Vertex Shader Function
+	//ã€10ã€‘é¡¶ç‚¹ç€è‰²å‡½æ•° || Vertex Shader Function
 	VertexOutput_Blur vert_BlurVertical(VertexInput v)
 	{
-		//¡¾10.1¡¿ÊµÀı»¯Ò»¸öÊä³ö½á¹¹
+		//ã€10.1ã€‘å®ä¾‹åŒ–ä¸€ä¸ªè¾“å‡ºç»“æ„
 		VertexOutput_Blur o;
 
-		//¡¾10.2¡¿Ìî³äÊä³ö½á¹¹
-		//½«ÈıÎ¬¿Õ¼äÖĞµÄ×ø±êÍ¶Ó°µ½¶şÎ¬´°¿Ú  
+		//ã€10.2ã€‘å¡«å……è¾“å‡ºç»“æ„
+		//å°†ä¸‰ç»´ç©ºé—´ä¸­çš„åæ ‡æŠ•å½±åˆ°äºŒç»´çª—å£  
 		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
-		//ÎÆÀí×ø±ê
+		//çº¹ç†åæ ‡
 		o.uv = half4(v.texcoord.xy, 1, 1);
-		//¼ÆËãY·½ÏòµÄÆ«ÒÆÁ¿
+		//è®¡ç®—Yæ–¹å‘çš„åç§»é‡
 		o.offset = _MainTex_TexelSize.xy * half2(0.0, 1.0) * _DownSampleValue;
 
-		//¡¾10.3¡¿·µ»Ø×îÖÕµÄÊä³ö½á¹û
+		//ã€10.3ã€‘è¿”å›æœ€ç»ˆçš„è¾“å‡ºç»“æœ
 		return o;
 	}
 
-	//¡¾11¡¿Æ¬¶Î×ÅÉ«º¯Êı || Fragment Shader Function
+	//ã€11ã€‘ç‰‡æ®µç€è‰²å‡½æ•° || Fragment Shader Function
 	half4 frag_Blur(VertexOutput_Blur i) : SV_Target
 	{
-		//¡¾11.1¡¿»ñÈ¡Ô­Ê¼µÄuv×ø±ê
+		//ã€11.1ã€‘è·å–åŸå§‹çš„uvåæ ‡
 		half2 uv = i.uv.xy;
 
-		//¡¾11.2¡¿»ñÈ¡Æ«ÒÆÁ¿
+		//ã€11.2ã€‘è·å–åç§»é‡
 		half2 OffsetWidth = i.offset;
-		//´ÓÖĞĞÄµãÆ«ÒÆ3¸ö¼ä¸ô£¬´Ó×î×ó»ò×îÉÏ¿ªÊ¼¼ÓÈ¨ÀÛ¼Ó
+		//ä»ä¸­å¿ƒç‚¹åç§»3ä¸ªé—´éš”ï¼Œä»æœ€å·¦æˆ–æœ€ä¸Šå¼€å§‹åŠ æƒç´¯åŠ 
 		half2 uv_withOffset = uv - OffsetWidth * 3.0;
 
-		//¡¾11.3¡¿Ñ­»·»ñÈ¡¼ÓÈ¨ºóµÄÑÕÉ«Öµ
+		//ã€11.3ã€‘å¾ªç¯è·å–åŠ æƒåçš„é¢œè‰²å€¼
 		half4 color = 0;
 		for (int j = 0; j< 7; j++)
 		{
-			//Æ«ÒÆºóµÄÏñËØÎÆÀíÖµ
+			//åç§»åçš„åƒç´ çº¹ç†å€¼
 			half4 texCol = tex2D(_MainTex, uv_withOffset);
-			//´ıÊä³öÑÕÉ«Öµ+=Æ«ÒÆºóµÄÏñËØÎÆÀíÖµ x ¸ßË¹È¨ÖØ
+			//å¾…è¾“å‡ºé¢œè‰²å€¼+=åç§»åçš„åƒç´ çº¹ç†å€¼ x é«˜æ–¯æƒé‡
 			color += texCol * GaussWeight[j];
-			//ÒÆµ½ÏÂÒ»¸öÏñËØ´¦£¬×¼±¸ÏÂÒ»´ÎÑ­»·¼ÓÈ¨
+			//ç§»åˆ°ä¸‹ä¸€ä¸ªåƒç´ å¤„ï¼Œå‡†å¤‡ä¸‹ä¸€æ¬¡å¾ªç¯åŠ æƒ
 			uv_withOffset += OffsetWidth;
 		}
 
-		//¡¾11.4¡¿·µ»Ø×îÖÕµÄÑÕÉ«Öµ
+		//ã€11.4ã€‘è¿”å›æœ€ç»ˆçš„é¢œè‰²å€¼
 		return color;
 	}
 
-	//-------------------½áÊøCG×ÅÉ«ÓïÑÔÉùÃ÷²¿·Ö  || End CG Programming Part------------------  			
+	//-------------------ç»“æŸCGç€è‰²è¯­è¨€å£°æ˜éƒ¨åˆ†  || End CG Programming Part------------------  			
 	ENDCG
 
 	FallBack Off
